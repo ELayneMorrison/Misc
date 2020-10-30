@@ -1,0 +1,45 @@
+# Jupyter Notebook Example
+
+## Purpose: Play!
+Analyst: Layne
+Date: Oct 30
+Version: blah blah blah
+
+#Import libraries at the top
+import os
+import pandas as pd
+import numpy as np
+
+## 1. Lets get some data
+
+#Lets get some data. In this case, we downloaded some files from the College Scorecard.
+#We can use pandas (pd) to read in the csv files.
+#lets read it into a datafile (df is the typical abbreviation), an object that looks and feels like an excel workbook
+datafile = pd.read_csv('C:/Users/erica.morrison/Downloads/CollegeScorecard_Raw_Data/MERGED2017_18_PP.csv')
+
+#Lets have a look at it - using df.head(), df.tail(), df.sample()
+datafile.head()
+
+This worked well, but we don't want to run one line for each file when there are 20 files - or 2000 files.
+## II. Read-in Take 2!
+
+os.chdir("C:/Users/erica.morrison/Downloads/CollegeScorecard_Raw_Data")
+
+#Confirm directory 
+#os.getcwd() 
+
+#List all the files
+os.listdir()
+
+#We know this is a list object because of the brackets. We can also save this to an object for easier manipulation.
+entries = os.listdir()
+
+print(entries)
+
+entries_short = entries[5:28]
+#Doublecheck it 
+#print(entries_short)
+
+for x in entries_short:
+    x = pd.read_csv(x)
+
